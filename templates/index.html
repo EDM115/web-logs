@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Viewer - EDM115's VPS</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.11.0/src/sha256.js"></script>
+    <script type="text/javascript">
+        function checkPassword(hashedPassword) {
+            var input = prompt('Please enter the password to view logs :');
+            if (input === null) {
+                window.location = '{{ redirect_url }}';
+            } else {
+                var inputHashed = sha256(input);
+                if (inputHashed !== hashedPassword) {
+                    window.location = '{{ redirect_url }}';
+                } else {
+										window.location.href = `admin?passwd=${input}`
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="checkPassword('{{ hashed_password }}')">
+    <h1>EDM115's VPS Log Viewer</h1>
+</body>
+</html>

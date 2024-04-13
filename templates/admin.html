@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Viewer - EDM115's VPS</title>
+</head>
+<body>
+    <h1>EDM115's VPS Log Viewer</h1>
+    {% for bot, files in log_files.items() %}
+        <h2>{{ bot }}</h2>
+        <ul>
+            {% for file in files %}
+                <li><a href="{{ url_for('log_file', bot=bot, filename=file) }}" target="_blank">{{ file }}</a> | <a href="{{ url_for('log_file', bot=bot, filename=file, dl=1) }}" target="_blank">Download</a></li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>
