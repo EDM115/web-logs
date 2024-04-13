@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 import hashlib
 import os
 
-from config.py import log_paths
+from config import log_paths
 
 app = Flask(__name__)
 

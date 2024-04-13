@@ -18,6 +18,12 @@ LOGS_VIEWER_REDIRECT="https://example.com"
 LOGS_VIEWER_PORT=10000
 ```
 
+Create a new file called `config.py`
+
+```bash
+nano config.py
+```
+
 Edit the paths to the logs folders in `config.py`
 
 ```py
@@ -30,7 +36,7 @@ log_paths = {
 ## Run
 
 ```bash
-source .env && mkdir -p logs && nohup python3 app.py > logs/output.log 2>&1 &
+export $(cat .env | xargs) && mkdir -p logs && nohup python3 app.py > logs/output.log 2>&1 &
 ```
 
 ## CLI Access
@@ -49,7 +55,7 @@ curl -OJ "http://logs.server.url/logs/app/file.log?dl=1"
 
 - **`/`** : The entry page. You basically don't see it, as it directly prompts to enter the password. A wrong password redirects to `LOGS_VIEWER_REDIRECT`
 - **`/admin?passwd=ABCDE`** : The main page. Displays the list of apps and the logs that their respective folders contains. The filename link will open the logs file in stream in another tab, while the Download link will... well download it
-- **`/logs/app/file.log`** : Display the log of the `file.log` file of the application `app` in stream
+- **`/logs/app/file.log`** : Display the content of the `file.log` file of the application `app` in stream
 - **`/logs/app/file.log?dl=1`** : Same as above but downloads the file
 
 ## Security

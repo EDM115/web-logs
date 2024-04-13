@@ -2,3 +2,5 @@
 .env
 output.log
 config.py
+__pycache__
+
