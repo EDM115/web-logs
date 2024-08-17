@@ -23,7 +23,8 @@ def admin():
     if client_pass == password:
         for bot, path in log_paths.items():
             if os.path.exists(path):
-                files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))].sort()
+                files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+                files.sort()
                 log_files[bot] = files
         return render_template('admin.html', log_files=log_files, hashed_password=hashed_password)
     else:
