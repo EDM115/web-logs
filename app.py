@@ -24,7 +24,7 @@ def admin():
         for bot, path in log_paths.items():
             if os.path.exists(path):
                 files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
-                log_files[bot] = files
+                log_files[bot] = files.sort()
         return render_template('admin.html', log_files=log_files, hashed_password=hashed_password)
     else:
         return redirect(r_url)
